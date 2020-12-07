@@ -76,35 +76,35 @@ function identity<T extends Lengthwise>(arg: T) {
 
 // 7. 在泛型中使用类类型
 
-function create<T>(c: new () => T): T{
-  return new c()
-}
+// function create<T>(c: new () => T): T{
+//   return new c()
+// }
 
 // 使用原型属性推断并约束构造函数与类实例的关系
-class BeeKeepr {
-  hasMark: boolean;
-}
+// class BeeKeepr {
+//   hasMark: boolean;
+// }
 
-class ZooKeeper {
-  nametag: string;
-}
+// class ZooKeeper {
+//   nametag: string;
+// }
 
-class Animal {
-  numLegs: number;
-}
+// class Animal {
+//   numLegs: number;
+// }
 
 
-class Bee extends Animal {
-  keeper: BeeKeepr;
-}
+// class Bee extends Animal {
+//   keeper: BeeKeepr;
+// }
 
-class Loin extends Animal {
-  keeper: ZooKeeper;
-}
+// class Loin extends Animal {
+//   keeper: ZooKeeper;
+// }
 
-function createInstance<T extends Animal>(c: {new (): T}):T {
-  return new c();
-}
+// function createInstance<T extends Animal>(c: {new (): T}):T {
+//   return new c();
+// }
 
-createInstance(Loin).keeper.nametag;
-createInstance(Bee).keeper.hasMark;
+// createInstance(Loin).keeper.nametag;
+// createInstance(Bee).keeper.hasMark;
