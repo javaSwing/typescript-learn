@@ -156,3 +156,118 @@
 
 
 // 7. 类类型(Class Types)
+// 7.1 实现接口 (implementing an interface) 
+
+// interface ClockInterface {
+//   currentTime: Date;
+//   setTime(d: Date): void;
+// }
+
+// class Clock implements ClockInterface {
+//   currentTime: Date = new Date();
+//   setTime(d: Date) {
+//     this.currentTime = d;
+//   }
+//   constructor(h: number, m: number) { }
+// }
+
+// 7.2 类静态部分与实例部分的区别(Difference between the static and instance sides of classes)
+
+// 在interface中只能描述实例部分，不能描述类的静态部分，而constructor正好是静态部分
+// interface ClockConstructor {
+//   new (hour: number, minute: number);
+// }
+
+// class Clock implements ClockConstructor { // error  Type 'Clock' provides no match for the signature 'new (hour: number, minute: number): any'
+//   currentTime: Date;
+//   constructor(h: number, m: number) { }
+// }
+
+// 使用以下方法来实现对于constructor的约束，
+// TODO: 实现对于constructor的约束暂时不是很明白
+
+// interface ClockConstructor {
+//   new(h: number, m: number): ClockInterface;
+// }
+
+
+// interface ClockInterface {
+//   tick(): void;
+// }
+
+// const Clock: ClockConstructor = class Clock implements ClockInterface {
+//   constructor(h: number, m: number) { }
+//   tick() {
+//     console.log('beep beep')
+//   }
+// }
+
+// 7.3 继承接口(extending interface)
+// 接口的相互之间是可以相互继承的来实现更加复杂的元素
+
+// interface Shape {
+//   color: string;
+// }
+
+// interface PenStroke {
+//   penWidth: number;
+// }
+
+// interface Square extends Shape, PenStroke {
+//   sideLength: number;
+// }
+
+// let square = {} as Square;
+
+// square.color = 'blue';
+// square.sideLength = 10;
+// square.penWidth = 5.0;
+
+// 7.4 混合类型(Hybird Types)
+// 在javascript中一个对象可以同时做为函数和对象使用
+// interface Counter {
+//   (start: number): string;
+//   interval: number;
+//   reset(): void;
+// }
+
+// function getCounter(): Counter {
+//   let counter = function (start: number) { } as Counter;
+//   counter.interval = 123;
+//   counter.reset = function () { }
+//   return counter;
+// }
+
+
+// let c = getCounter()
+// c(10);
+// c.reset()
+// c.interval = 5.0;
+
+// 7.5 接口继承类(interface extending classes)
+// 接口继承类，只是声明了中类存在的成功，接口同样也会继承到类的private和protected成员，
+// 这意味着要实现此继承类的接口，则此类必须为接口继承类或者其子类，才能被implement
+// class Control {
+//   private state: any;
+// }
+
+// interface SelectableControl extends Control {
+//   select(): void;
+// }
+
+// class Button extends Control implements SelectableControl {
+//   select() { }
+// }
+
+// class TextBox extends Control {
+
+// }
+
+// // error Property 'state' is missing in type 'Image' but required in type 'SelectableControl'.
+// class Image implements SelectableControl {
+//   select() { }
+// }
+
+// class Location {
+
+// }
